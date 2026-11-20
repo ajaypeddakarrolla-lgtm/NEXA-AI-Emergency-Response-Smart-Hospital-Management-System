@@ -1,0 +1,9 @@
+import {Routes,Route} from 'react-router-dom';import AppLayout from './layouts/AppLayout';import {Landing,Login} from './pages/Public';import {Admin,Patient,Hospital,Analytics} from './pages/Dashboards';import {EmergencyRequest,Tracking,AI,Manage,Notifications,Driver} from './pages/Flows';import {PageTitle} from './components/ui';
+const H=[{k:'name',h:'Hospital'},{k:'area',h:'Location'},{k:'icu',h:'ICU free'},{k:'beds',h:'Beds'},{k:'doctors',h:'Doctors'},{k:'status',h:'Status',s:1},{k:'score',h:'AI score'}];
+const A=[{k:'id',h:'Ambulance'},{k:'driver',h:'Driver'},{k:'type',h:'Type'},{k:'location',h:'Location'},{k:'status',h:'Status',s:1},{k:'eta',h:'ETA'}];
+const D=[{k:'name',h:'Doctor'},{k:'spec',h:'Specialization'},{k:'hospital',h:'Hospital'},{k:'patient',h:'Current patient'},{k:'status',h:'Status',s:1}];
+const Soon=({t})=><PageTitle title={t} sub="Coming in the next build"/>;
+export default function App(){return <Routes><Route path="/" element={<Landing/>}/><Route path="/login" element={<Login/>}/>
+<Route path="/app" element={<AppLayout/>}><Route index element={<Admin/>}/><Route path="patient" element={<Patient/>}/><Route path="emergency" element={<EmergencyRequest/>}/><Route path="tracking" element={<Tracking/>}/><Route path="hospital" element={<Hospital/>}/><Route path="driver" element={<Driver/>}/><Route path="ai" element={<AI/>}/><Route path="analytics" element={<Analytics/>}/>
+<Route path="hospitals" element={<Manage title="Hospital Management" k="hospitals" cols={H}/>}/><Route path="ambulances" element={<Manage title="Ambulance Management" k="ambulances" cols={A}/>}/><Route path="doctors" element={<Manage title="Doctor Management" k="doctors" cols={D}/>}/>
+<Route path="notifications" element={<Notifications/>}/><Route path="reports" element={<Soon t="Reports"/>}/><Route path="settings" element={<Soon t="Settings"/>}/></Route></Routes>}
